@@ -14,39 +14,19 @@ import shapes.Point;
 import shapes.Square;
 
 public class Main extends Application {
-
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Group root = new Group();
-        Scene scene = new Scene(root, 400, 300);
-        Canvas canvas = canvas = new Canvas(400, 300);
-        root.getChildren().add(canvas);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-      //  Square sqr = new Square();
-        Point p = new Point();
-        p.setY(50);
-        p.setX(50);
-        p.setColor(Color.BLACK);
+        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
 
-        Circle crcl = new Circle();
-        crcl.setCenter(p);
-        crcl.setRadius(30);
-        crcl.setCircle(gc);
+        Scene scene = new Scene(root, 600, 400);
 
-        /*
-        p.setColor(Color.BLACK);
-        sqr.setLeftUpAngle(p);
-        sqr.setLengthSide(20);
-        sqr.setSquare(gc);
-        */
+        scene.getStylesheets().add(0, "styles/main.css");
 
-
-
+        primaryStage.setTitle("Java FX");
         primaryStage.setScene(scene);
-
         primaryStage.show();
-
     }
+
 
 
     public static void main(String[] args) {
