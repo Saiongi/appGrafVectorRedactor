@@ -1,7 +1,9 @@
 package sample.controll;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import shapes2.Circle;
+import shapes2.Point;
 import shapes2.Shape;
 import shapes2.Square;
 
@@ -18,9 +20,28 @@ import java.util.ArrayList;
     shapes = new ArrayList<Shape>();
     }
 
+    public void changeActiveFigure(){
+
+    }
+
+    public void findActiveFigure(Point start){
+        int i=0;
+        for (Shape shape : shapes) {
+            if (shape.isSelected(start)) {
+
+                System.out.println("Попали");
+                return;
+            }
+        }
+        if (i==0){
+            for (Shape shape : shapes) {
+                shape.select=false;
+            }
+        }
+    }
+
     public void addShape(Shape shape){
         shapes.add(shape);
-
         System.out.println("add shape"+ shape.toString());
 
     }

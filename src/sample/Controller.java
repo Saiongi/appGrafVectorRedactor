@@ -1,12 +1,9 @@
 package sample;
 
+import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import sample.controll.Buffer;
-import shapes2.Circle;
-import shapes2.Shape;
-import shapes2.Square;
-import shapes2.Point;
+import shapes2.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -18,14 +15,23 @@ public class Controller {
     Buffer buffer;
     Square square;
     Circle krug;
+    @FXML
+    Triangle treugolnik;
+    //переиенная для определения наличия текущей выбранной фигуры
+    boolean activeFigure=false;
     //переменнные для определения нажатия на иконку отрисовки и выбора изображаемой фигуры
-    boolean circle=false, rectangle = false;
+
+    boolean circlebool =false, rectangle = false, triangle = false, selecting=false;
     //переменная для диаметра
     double diam = 0;
-
+    GraphicsContext gc;
+    //Конструктор класса
     public Controller(){
+        //инициализация экземпляра класса буффер, для работы с коллекцией объектов
         buffer = new Buffer();
+
     }
+    //определеяет текущее положение курсора. Если оно изменено,значение меняется. Используется для эффекта отрисовки.
     public Point getFinishPoint(MouseEvent mouseEvent){
         double x=0, y=0;
         Point p;
@@ -36,7 +42,7 @@ public class Controller {
         p=new Point((int)x,(int)y);
         return p;
     }
-//перемещение мыши
+    //перемещение мыши
     public void canvasMouseDragged(MouseEvent mouseEvent) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.clearRect(0, 0, 571, 373);
@@ -51,36 +57,53 @@ public class Controller {
         }
 
        //создаем круг
-        if (circle) {
+        if (circlebool) {
              diam = mouseEvent.getY()-start.getY();
 
             krug.setDiametr(diam);
             //вызываем метод создания круга
             if (start == krug.getLeftUpAngle() && mouseEvent.isPrimaryButtonDown()) krug.paintShape(gc);
         }
+        //создаем треугольник
+        if (triangle) {
+            treugolnik.setHelpPoint(getFinishPoint(mouseEvent));
+
+            //вызываем метод создания прямоугольника
+            if (start == treugolnik.getCenterAngle() && mouseEvent.isPrimaryButtonDown()) treugolnik.paintShape(gc);
+        }
+
     }
     //метод, срабатывающий на отжатие мыши
     public void canvasMouseClicked(MouseEvent mouseEvent) {
         //передаем gc
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-       //отрисовываем фигуры из буфера
+        gc = canvas.getGraphicsContext2D();
+
+        //отрисовываем фигуры из буфера
         buffer.paintShapes(gc);
 
+        //отрисовка новой текущей фигуры:
+
+        //если задействован прямоугольник
         if (rectangle)
         {   //записываем вторую точку для отрисовки прямоугольника
             square.setRightDownAngle(new Point((int) mouseEvent.getX(), (int) mouseEvent.getY()));
             buffer.addShape(square);
         }
 
-        //если задействован прямоугольник
 
-        if (circle)
-        {   //записываем вторую точку для отрисовки прямоугольника
+        //
+        if (circlebool)
+        {   //записываем вторую точку для отрисовки круга
              diam = mouseEvent.getY()-start.getY() ;
+
             krug.setDiametr( diam )   ;
             buffer.addShape(krug);
+        }
 
-
+        if (triangle)
+        {   //записываем вторую точку для отрисовки прямоугольника
+            treugolnik.setHelpPoint(new Point((int) mouseEvent.getX(), (int) mouseEvent.getY()));
+            buffer.addShape(treugolnik);
         }
 
         //для проверки записи кординат, выводим их в консоль
@@ -88,13 +111,22 @@ public class Controller {
     }
     //метод, срабатывающий на нажатие мыши
     public void canvasMousePressed(MouseEvent mouseEvent) {
-        //узнаем начальную точку фигуры(отжатая кнопка мыши)
+        //узнаем начальную точку фигуры(отжатая кнопка мыши) или текущее положение мыши при нажатии
         start = new Point((int) mouseEvent.getX(), (int) mouseEvent.getY());
         //в зависимости от задействованной фигуры, создаем нужную
-       //создаем круг
-        if (circle)
+
+        //если нужно выбрать фигуру
+        if (selecting){
+            buffer.findActiveFigure(start);
+
+        }
+
+
+        //создаем круг
+        if (circlebool)
         {
             krug = new Circle();
+
             //записываем первую координату
             krug.setLeftUpAngle(start);
         }
@@ -106,18 +138,29 @@ public class Controller {
             square.setLeftUpAngle(start);
 
         }
+        //создаем треугольник
+        if (triangle)
+        {
+            treugolnik = new Triangle();
+            //записываем первую координату
+            treugolnik.setCenterAngle(start);
+        }
+
         //для проверки записи кординат, выводим их в консоль
         System.out.println(mouseEvent.getX() + " "+  mouseEvent.getY());
-
     }
 //кнопка круга
     public void circleMouseClicked(MouseEvent mouseEvent) {
-        if (circle){
-            circle=false;
+        if (circlebool){
+            circlebool =false;
+
         }
         else {
-            circle=true;
+            circlebool =true;
             rectangle=false;
+            selecting=false;
+            triangle=false;
+
         }
 
     }
@@ -128,16 +171,36 @@ public class Controller {
 
         }else {
             rectangle=true;
-            circle=false;
+            circlebool =false;
+            selecting=false;
+            triangle=false;
+        }
+    }
+//кнопка выбрать фигуру
+    public void selectMouseClicked(MouseEvent mouseEvent) {
+        if (selecting){
+            selecting=false;
+
+        }else {
+            selecting=true;
+            rectangle=false;
+            circlebool =false;
+            triangle=false;
+
         }
     }
 
-   /*
-   *
-   * */
+    //кнопка треугольника
+    public void triangleMouseClicked(MouseEvent mouseEvent) {
+        if (triangle){
+            triangle=false;
 
-
-
-
+        }else {
+            triangle=true;
+            circlebool =false;
+            selecting=false;
+            rectangle=false;
+        }
+    }
 
 }

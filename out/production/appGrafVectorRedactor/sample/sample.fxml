@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <Canvas fx:id="canvas" height="373.0" onMouseClicked="#canvasMouseClicked" onMouseDragged="#canvasMouseDragged" onMousePressed="#canvasMousePressed" width="571.0" />
-      <Circle fx:id="circle" fill="DODGERBLUE" layoutX="23.0" layoutY="23.0" onMouseClicked="#circleMouseClicked" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-      <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="18.0" layoutX="14.0" layoutY="41.0" onMouseClicked="#rectangleMouseClicked" stroke="BLACK" strokeType="INSIDE" width="18.0" />
+      <Canvas fx:id="canvas" height="373.0" onMouseClicked="#canvasMouseClicked" onMouseDragged="#canvasMouseDragged" onMousePressed="#canvasMousePressed" width="606.0" />
+      <Circle fx:id="circlebool" fill="DODGERBLUE" layoutX="23.0" layoutY="23.0" onMouseClicked="#circleMouseClicked" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+      <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="18.0" layoutX="41.0" layoutY="15.0" onMouseClicked="#rectangleMouseClicked" stroke="BLACK" strokeType="INSIDE" width="18.0" />
+      <Button fx:id="selectShape" layoutX="146.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#selectMouseClicked" prefHeight="25.0" prefWidth="83.0" text="SelectShape" />
+      <Button fx:id="treug" layoutX="74.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#triangleMouseClicked" text="Button" />
    </children>
 </Pane>
