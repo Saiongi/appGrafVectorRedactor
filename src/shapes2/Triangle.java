@@ -114,8 +114,7 @@ public class Triangle extends Shape {
     @Override
     public boolean isSelected(Point findingPoint){
         this.setAngles();
-        //проверяем точку на принадлежность к верхней  стороне
-        //если точка CenterAngle левее RightDownAngle]
+
         int x1=this.getCenterAngle().getX(), y1=this.getCenterAngle().getY();
         int x2=this.getLeftDownAngle().getX(), y2=this.getLeftDownAngle().getY();
         int x3=this.getRightDownAngle().getX(), y3=this.getRightDownAngle().getY();

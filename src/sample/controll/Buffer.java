@@ -14,7 +14,8 @@ import java.util.ArrayList;
  */
  public  class Buffer {
 
-    ArrayList<Shape> shapes;
+     public ArrayList<Shape> shapes;
+    public int indexOfselect=-1;
 
     public Buffer(){
     shapes = new ArrayList<Shape>();
@@ -25,26 +26,60 @@ import java.util.ArrayList;
     }
 
     public void findActiveFigure(Point start){
-        int i=0;
+        System.out.println("FindActiveFigure");
         for (Shape shape : shapes) {
-            if (shape.isSelected(start)) {
-
+            shape.select=false;
+            indexOfselect=-1;
+        }
+        int g=0;
+        for (int i=0;i<shapes.size();i++) {//Shape shape : shapes
+            if (shapes.get(i).isSelected(start)) {
+                indexOfselect=i;
+                g=1;
                 System.out.println("Попали");
                 return;
             }
         }
-        if (i==0){
+        if (g==0){
             for (Shape shape : shapes) {
                 shape.select=false;
+                indexOfselect=-1;
             }
+        indexOfselect=-1;
         }
     }
 
     public void addShape(Shape shape){
         shapes.add(shape);
         System.out.println("add shape"+ shape.toString());
+    }
+
+    public void rotateFigure(GraphicsContext gc){
+        shapes.get(indexOfselect).rotate(gc);
+
 
     }
+    public void setRotateAngle1(Point p){
+        for (Shape shape : shapes) {
+            if (shape.select) shape.setPointForRotate1(p);
+        }
+    }
+    public void setRotateAngle2(Point p){
+        for (Shape shape : shapes) {
+            if (shape.select) shape.setPointForRotate2(p);
+        }
+    }
+    public void setChangePoint1(Point p){
+        shapes.get(indexOfselect).setStartChange(p);
+    }
+    public void setChangePoint2(Point p){
+        shapes.get(indexOfselect).setFinishChange(p);
+    }
+    public void changePositionFigure(GraphicsContext gc){
+       shapes.get(indexOfselect).changePosition() ;
+        this.paintShapes(gc);
+    }
+
     public void paintShapes(GraphicsContext gc){
              for (Shape shape : shapes) {
                 shape.paintShape(gc);

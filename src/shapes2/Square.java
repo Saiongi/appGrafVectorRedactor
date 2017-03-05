@@ -224,5 +224,24 @@ public class Square extends Shape {
         this.getLeftUpAngle().setColor(Color.RED);
         this.getRightUpAngle().setColor(Color.RED);
     }
+   @Override
+    public Shape changePosition(){
+       int changeX=this.getFinishChange().getX()-this.getStartChange().getX();
+       int changeY=this.getFinishChange().getY()-this.getStartChange().getY();
+       Point p1=new Point(this.getRightDownAngle().getX()+changeX, this.getRightDownAngle().getY()+changeY);
+       this.setRightDownAngle(p1);
+
+       Point p2=new Point(this.getLeftDownAngle().getX()+changeX, this.getLeftDownAngle().getY()+changeY);
+       this.setLeftDownAngle(p2);
+
+       Point p3=new Point(this.getRightUpAngle().getX()+changeX, this.getRightUpAngle().getY()+changeY);
+       this.setRightUpAngle(p3);
+
+       Point p4=new Point(this.getLeftUpAngle().getX()+changeX, this.getLeftUpAngle().getY()+changeY);
+       this.setLeftUpAngle(p4);
+       p1 = this.getFinishChange();
+       this.setStartChange(p1);
+        return this;
+   }
 
 }
