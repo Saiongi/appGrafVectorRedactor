@@ -42,8 +42,8 @@ public abstract class Shape {
         return select;//проверяет выбрана ли данная фигура
     }
 
-    public Shape changePosition(){
-        return this;
+    public void changePosition(){
+        return ;
         //изменяет позицию
     }
     public void changeSize(){

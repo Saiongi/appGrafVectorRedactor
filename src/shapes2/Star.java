@@ -124,7 +124,7 @@ public class Star extends  Polygon {
         //перерисовываем
         //this.rotating=true;
         this.paintShape(gc);
-
+        this.setPointForRotate1(this.getPointForRotate2());
     }
 
     public void rotate2(GraphicsContext gc){
@@ -147,6 +147,24 @@ public class Star extends  Polygon {
         }
 
        // this.paintShape(gc);
+    }
+
+    @Override
+    public void changePosition(){
+        Point p1;
+        int changeX=this.getFinishChange().getX()-this.getStartChange().getX();
+        int changeY=this.getFinishChange().getY()-this.getStartChange().getY();
+        for (int i = 0; i < this.getPoligonAngles().size(); i++) {
+
+            p1 = new Point(this.getPoligonAngles().get(i).getX() + changeX, this.getPoligonAngles().get(i).getY() + changeY);
+            this.getPoligonAngles().set(i,p1);
+
+        }
+        Point p2= new Point(this.getCenter().getX() + changeX, this.getCenter().getY() + changeY);
+        this.setCenter(p2);
+        p1 = this.getFinishChange();
+        this.setStartChange(p1);
+
     }
 }
 

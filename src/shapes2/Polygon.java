@@ -78,7 +78,10 @@ public class Polygon extends Shape {
 
     @Override
     public void paintShape(GraphicsContext gc) {
-        setAngles();
+       if (!this.select){
+           setAngles();
+       }
+
 
         if (this.select) gc.setStroke(Color.RED);
         else gc.setStroke(Color.BLACK);
@@ -144,6 +147,24 @@ public class Polygon extends Shape {
         }
         this.select=false;
         return this.select;
+    }
+
+    @Override
+    public void changePosition(){
+        Point p1;
+        int changeX=this.getFinishChange().getX()-this.getStartChange().getX();
+        int changeY=this.getFinishChange().getY()-this.getStartChange().getY();
+        for (int i = 0; i < this.getPoligonAngles().size(); i++) {
+
+            p1 = new Point(this.getPoligonAngles().get(i).getX() + changeX, this.getPoligonAngles().get(i).getY() + changeY);
+            this.getPoligonAngles().set(i,p1);
+
+        }
+        Point p2= new Point(this.getCenter().getX() + changeX, this.getCenter().getY() + changeY);
+        this.setCenter(p2);
+        p1 = this.getFinishChange();
+        this.setStartChange(p1);
+
     }
 /*
 * double max(double x, double y)

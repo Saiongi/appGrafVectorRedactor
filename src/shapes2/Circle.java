@@ -27,8 +27,11 @@ public class Circle extends Shape {
     public double getDiametr() {
         return diametr;
     }
-    public void setCenter(Point center) {
-        this.center = center;
+    public void setCenter() {
+        Point p=new Point(this.getLeftUpAngle().getX(),this.getLeftUpAngle().getY());
+        p.setX(p.getX()+(int)(diametr/2));
+        p.setY(p.getY()+(int)(diametr/2));
+        this.center=p;
     }
     public Point getCenter() {
         return center;
@@ -39,20 +42,17 @@ public class Circle extends Shape {
         if (this.select) {
             gc.setStroke(Color.RED);
         }else  gc.setStroke(Color.BLACK);
-        this.setCircleCoordinates();
+        this.setCenter();
 
         gc.strokeOval((double) this.getLeftUpAngle().getX(),(double) this.getLeftUpAngle().getY(), this.getDiametr(), this.getDiametr());
 
             }
 
     //определение центра окружности и радиуса
-    public void setCircleCoordinates(){
-        Point p=new Point(this.getLeftUpAngle().getX(),this.getLeftUpAngle().getY());
-        p.setX(p.getX()+(int)(diametr/2));
-        p.setY(p.getY()+(int)(diametr/2));
-        this.setCenter(p);
 
-    }
+
+
+
     @Override
     public boolean isSelected(Point findingPoint){
         double p = Math.pow((findingPoint.getX()-this.getCenter().getX()),2)+
@@ -67,5 +67,16 @@ public class Circle extends Shape {
         }
         return false;
     }
+    @Override
+    public void changePosition(){
+        int changeX=this.getFinishChange().getX()-this.getStartChange().getX();
+        int changeY=this.getFinishChange().getY()-this.getStartChange().getY();
+        Point p1=new Point(this.getLeftUpAngle().getX()+changeX, this.getLeftUpAngle().getY()+changeY);
+        this.setLeftUpAngle(p1);
+        p1 = this.getFinishChange();
+        this.setStartChange(p1);
+        return;
+    }
+
 
 }

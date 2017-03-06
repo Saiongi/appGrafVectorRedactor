@@ -34,7 +34,7 @@ public class Triangle extends Shape {
     }
 
     //доп перем для определения в какую сторону нарисован треуголбник
-    private String vKakuyuStoronuTreeugolnik="";
+    private String napravTreug ="";
     //эта точка лежит в центре противоположной стороны от первого угла(центрального), ровно по середине
     public void setHelpPoint(Point helpPoint) {
         this.helpPoint = helpPoint;
@@ -45,41 +45,42 @@ public class Triangle extends Shape {
     }
 //устанавливает углы,если не установлены
     public void setAngles(){
-        int dlinaVisoti=0;
-        //если треугольник рисуем вниз
-        if (this.getHelpPoint().getY() > this.getCenterAngle().getY()   )
-        {
-            vKakuyuStoronuTreeugolnik = "вниз";
-            dlinaVisoti=this.getHelpPoint().getY()-this.getCenterAngle().getY();
-            this.setRightDownAngle(new Point(this.getHelpPoint().getX()-(dlinaVisoti/2), this.getHelpPoint().getY()));
-            this.setLeftDownAngle(new Point(this.getHelpPoint().getX()+(dlinaVisoti/2), this.getHelpPoint().getY()));
+        if (this.getHelpPoint().getX()!=0){
+            int dlinVis=0;
+            //если треугольник рисуем вниз
+            if (this.getHelpPoint().getY() > this.getCenterAngle().getY()   )
+            {
+                napravTreug = "вниз";
+                dlinVis=this.getHelpPoint().getY()-this.getCenterAngle().getY();
+                this.setRightDownAngle(new Point(this.getHelpPoint().getX()-(dlinVis/2), this.getHelpPoint().getY()));
+                this.setLeftDownAngle(new Point(this.getHelpPoint().getX()+(dlinVis/2), this.getHelpPoint().getY()));
 
+            }
+            if (this.getHelpPoint().getY() < this.getCenterAngle().getY()   )
+            {
+                napravTreug = "вверх";
+                dlinVis=this.getCenterAngle().getY()-this.getHelpPoint().getY();
+                this.setRightDownAngle(new Point(this.getHelpPoint().getX()-(dlinVis/2), this.getHelpPoint().getY()));
+                this.setLeftDownAngle(new Point(this.getHelpPoint().getX()+(dlinVis/2), this.getHelpPoint().getY()));
+
+            }
+            if (this.getHelpPoint().getX() > this.getCenterAngle().getX()   )
+            {
+                napravTreug = "вправо";
+                dlinVis=this.getHelpPoint().getX()-this.getCenterAngle().getX();
+                this.setRightDownAngle(new Point(this.getHelpPoint().getX(), this.getHelpPoint().getY()+(dlinVis/2)));
+                this.setLeftDownAngle(new Point(this.getHelpPoint().getX(), this.getHelpPoint().getY()-(dlinVis/2)));
+
+            }
+            if (this.getHelpPoint().getX() < this.getCenterAngle().getX()   )
+            {
+                napravTreug = "влево";
+                dlinVis=this.getHelpPoint().getX()-this.getCenterAngle().getX();
+                this.setRightDownAngle(new Point(this.getHelpPoint().getX(), this.getHelpPoint().getY()-(dlinVis/2)));
+                this.setLeftDownAngle(new Point(this.getHelpPoint().getX(), this.getHelpPoint().getY()+(dlinVis/2)));
+
+            }
         }
-        if (this.getHelpPoint().getY() < this.getCenterAngle().getY()   )
-        {
-            vKakuyuStoronuTreeugolnik = "вверх";
-            dlinaVisoti=this.getCenterAngle().getY()-this.getHelpPoint().getY();
-            this.setRightDownAngle(new Point(this.getHelpPoint().getX()-(dlinaVisoti/2), this.getHelpPoint().getY()));
-            this.setLeftDownAngle(new Point(this.getHelpPoint().getX()+(dlinaVisoti/2), this.getHelpPoint().getY()));
-
-        }
-        if (this.getHelpPoint().getX() > this.getCenterAngle().getX()   )
-        {
-            vKakuyuStoronuTreeugolnik = "вправо";
-            dlinaVisoti=this.getHelpPoint().getX()-this.getCenterAngle().getX();
-            this.setRightDownAngle(new Point(this.getHelpPoint().getX(), this.getHelpPoint().getY()+(dlinaVisoti/2)));
-            this.setLeftDownAngle(new Point(this.getHelpPoint().getX(), this.getHelpPoint().getY()-(dlinaVisoti/2)));
-
-        }
-        if (this.getHelpPoint().getX() < this.getCenterAngle().getX()   )
-        {
-            vKakuyuStoronuTreeugolnik = "влево";
-            dlinaVisoti=this.getHelpPoint().getX()-this.getCenterAngle().getX();
-            this.setRightDownAngle(new Point(this.getHelpPoint().getX(), this.getHelpPoint().getY()-(dlinaVisoti/2)));
-            this.setLeftDownAngle(new Point(this.getHelpPoint().getX(), this.getHelpPoint().getY()+(dlinaVisoti/2)));
-
-        }
-
     }
 //
     public void setTrueAngles(){
@@ -88,11 +89,16 @@ public class Triangle extends Shape {
 
     @Override
     public void paintShape(GraphicsContext gc){
-       setAngles();
-        if (this.select) gc.setStroke(Color.RED);
-        else gc.setStroke(Color.BLACK);
 
-        this.getCenterAngle().setPoint(gc);
+
+        if (this.select) gc.setStroke(Color.RED);
+        else{
+            setAngles();
+            gc.setStroke(Color.BLACK);
+            this.getCenterAngle().setPoint(gc);
+        }
+
+
 
         gc.strokeLine((double) this.getCenterAngle().getX(),
                 (double) this.getCenterAngle().getY(),(double) this.getRightDownAngle().getX(), (double) this.getRightDownAngle().getY());
@@ -132,6 +138,27 @@ public class Triangle extends Shape {
         this.select=false;
         return this.select;
     }
+    @Override
+    public void changePosition(){
+        int changeX=this.getFinishChange().getX()-this.getStartChange().getX();
+        int changeY=this.getFinishChange().getY()-this.getStartChange().getY();
+        Point p1=new Point(this.getRightDownAngle().getX()+changeX, this.getRightDownAngle().getY()+changeY);
+        this.setRightDownAngle(p1);
 
+        Point p2=new Point(this.getLeftDownAngle().getX()+changeX, this.getLeftDownAngle().getY()+changeY);
+        this.setLeftDownAngle(p2);
+
+        Point p3=new Point(this.getCenterAngle().getX()+changeX, this.getCenterAngle().getY()+changeY);
+        this.setCenterAngle(p3);
+
+        Point p4=new Point(this.getHelpPoint().getX()+changeX, this.getHelpPoint().getY()+changeY);
+        this.setHelpPoint(p4);
+
+
+
+        p1 = this.getFinishChange();
+        this.setStartChange(p1);
+        return ;
+    }
 
 }

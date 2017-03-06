@@ -9,7 +9,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <Canvas fx:id="canvas" height="400.0" layoutX="-3.0" onMouseClicked="#canvasMouseClicked" onMouseDragged="#canvasMouseDragged" onMousePressed="#canvasMousePressed" width="606.0" />
+      <Canvas fx:id="canvas" height="400.0" layoutX="-3.0" onKeyPressed="#canvasKeyPressed" onMouseClicked="#canvasMouseClicked" onMouseDragged="#canvasMouseDragged" onMousePressed="#canvasMousePressed" width="606.0" />
       <Circle fx:id="circleButton" fill="DODGERBLUE" layoutX="23.0" layoutY="23.0" onMouseClicked="#circleMouseClicked" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
       <Rectangle fx:id="rectangleButton" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="18.0" layoutX="16.0" layoutY="40.0" onMouseClicked="#rectangleMouseClicked" stroke="BLACK" strokeType="INSIDE" width="18.0" />
       <Button fx:id="selectShapeButton" layoutX="8.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#selectMouseClicked" prefHeight="25.0" prefWidth="88.0" text="Select Shape" />
