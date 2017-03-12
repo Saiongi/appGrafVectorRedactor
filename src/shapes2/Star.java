@@ -12,8 +12,7 @@ public class Star extends  Polygon {
     public boolean rotating=false;
    private int radius2;
    private double angle;
-   private Point pointForRotate1;
-    private Point pointForRotate2;
+
     //добавляем внутренний радиус
     public void setRadius2(){
 
@@ -22,30 +21,28 @@ public class Star extends  Polygon {
     public int getRadius2() {
         return radius2;
     }
-    public void setPointForRotate1(Point p){
-        this.pointForRotate1 =p;
-    }
-    public Point getPointForRotate1() {
-        return pointForRotate1;
-    }
-    public void setPointForRotate2(Point p){
-        this.pointForRotate2 = p;
-    }
-    public Point getPointForRotate2() {
-        return pointForRotate2;
-    }
-    //нахождение угла для поворота по трем точкам и уего установление
-    public void setAngle() {
 
-        Point a=this.getPointForRotate1();
+    //нахождение угла для поворота по трем точкам и уего установление
+    public void setAngle3() {
+
+        Point a=this.getStartChange();
         Point b=this.getCenter();
-        Point c=this.getPointForRotate2();
+        Point c=this.getFinishChange();
         //  point a, point b, point c;
         double x1 = a.getX() - b.getX(), x2 = c.getX() - b.getX();
         double y1 = a.getY() - b.getY(), y2 = c.getY() - b.getY();
         double d1 = Math.sqrt (x1 * x1 + y1 * y1);
         double d2 = Math.sqrt (x2 * x2 + y2 * y2);
         this.angle= Math.acos ((x1 * x2 + y1 * y2) / (d1 * d2));
+      //  this.setStartChange(this.getFinishChange());
+    }
+    public void setAngle() {
+
+        Point a=this.getStartChange();
+        Point b=this.getCenter();
+        Point c=this.getFinishChange();
+
+        //  this.setStartChange(this.getFinishChange());
     }
     public double getAngle() {
         return angle;
@@ -112,6 +109,30 @@ public class Star extends  Polygon {
             p=new Point(0,0);
 
             p.setX((int)(Math.cos(this.getAngle())*(this.getPoligonAngles().get(i).getX()-this.getCenter().getX())
+                    - Math.sin(this.getAngle())*(this.getPoligonAngles().get(i).getY()-this.getCenter().getY())+this.getCenter().getX()));
+
+            p.setY((int)(Math.sin(this.getAngle())*(this.getPoligonAngles().get(i).getX()-this.getCenter().getX())
+                    + Math.cos(this.getAngle())*(this.getPoligonAngles().get(i).getY()-this.getCenter().getY())+this.getCenter().getY()));
+
+            System.out.println(" ish X:"+this.getPoligonAngles().get(i).getX()+" Y: "+this.getPoligonAngles().get(i).getY());
+            this.getPoligonAngles().set(i, p);
+            System.out.println(" nov "+this.getPoligonAngles().get(i).getX()+" Y: "+this.getPoligonAngles().get(i).getY());
+        }
+        //перерисовываем
+        //this.rotating=true;
+        this.paintShape(gc);
+        ///  this.setPointForRotate1(this.getPointForRotate2());
+    }
+
+    public void rotate3(GraphicsContext gc){
+        Point p;
+        this.setAngle();
+        System.out.println("Angle: "+this.getAngle());
+        System.out.println("new^");
+        for (int i = 0; i < i+2; i++){
+            p=new Point(0,0);
+
+            p.setX((int)(Math.cos(this.getAngle())*(this.getPoligonAngles().get(i).getX()-this.getCenter().getX())
                   - Math.sin(this.getAngle())*(this.getPoligonAngles().get(i).getY()-this.getCenter().getY())+this.getCenter().getX()));
 
             p.setY((int)(Math.sin(this.getAngle())*(this.getPoligonAngles().get(i).getX()-this.getCenter().getX())
@@ -124,18 +145,26 @@ public class Star extends  Polygon {
         //перерисовываем
         //this.rotating=true;
         this.paintShape(gc);
-        this.setPointForRotate1(this.getPointForRotate2());
+      ///  this.setPointForRotate1(this.getPointForRotate2());
     }
 
     public void rotate2(GraphicsContext gc){
-        double alpha=this.getAngle();
-        double a=Math.cos((360-alpha)*Math.PI/180);
-        double b=Math.sin((360-alpha)*Math.PI/180);
-        double c=-Math.sin((360-alpha)*Math.PI/180);
-        double d=Math.cos((360-alpha)*Math.PI/180);
+
+     //   double a=Math.cos((360-alpha)*Math.PI/180);
+     //   double b=Math.sin((360-alpha)*Math.PI/180);
+     //   double c=-Math.sin((360-alpha)*Math.PI/180);
+     //   double d=Math.cos((360-alpha)*Math.PI/180);
+
+
 
         Point p;
         this.setAngle();
+        double alpha=this.getAngle();
+        double a=Math.cos(360*Math.PI/180-alpha);
+        double b=Math.sin(360*Math.PI/180-alpha);
+        double c=-Math.sin(360*Math.PI/180-alpha);
+        double d=Math.cos(360*Math.PI/180-alpha);
+
         System.out.println("Angle: "+this.getAngle());
         System.out.println("new^");
         for (int i = 0; i < this.getPoligonAngles().size(); i++) {
@@ -146,7 +175,7 @@ public class Star extends  Polygon {
             this.getPoligonAngles().set(i, p);
         }
 
-       // this.paintShape(gc);
+        this.paintShape(gc);
     }
 
     @Override

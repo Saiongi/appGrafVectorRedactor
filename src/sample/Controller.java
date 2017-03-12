@@ -2,6 +2,7 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.scene.control.ComboBox;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -13,15 +14,17 @@ import javafx.scene.canvas.GraphicsContext;
 
 
 public class Controller {
+    public GraphicsContext gc;
     public  Canvas canvas;
     public ComboBox choiseBox;
     Point start, finish;
     Buffer buffer;
-    Square square;
-    Circle circle;
-    Polygon polygon;
-    Triangle triangle;
-    Star star;
+    private Square square;
+    private Circle circle;
+    private Polygon polygon;
+    private Triangle triangle;
+    private Star star;
+    public String key;
     //переиенная для определения наличия текущей выбранной фигуры
     boolean activeFigure=false;
     //переменнные для определения нажатия на иконку отрисовки и выбора изображаемой фигуры
@@ -29,10 +32,10 @@ public class Controller {
     static boolean isCircle =false, isRectangle = false, isTriangle = false, isPolygon =false, isStar=false, isSelect =false,
             isChangePosition=false,isRotate=false;
 
-    boolean isShift=false;
+    boolean isShift=false, isResize=false;
     //переменная для диаметра
     double diam = 0;
-    GraphicsContext gc;
+
 
     //Конструктор класса
     public Controller(){
@@ -40,12 +43,11 @@ public class Controller {
         buffer = new Buffer();
     }
 
-    public void focus() {
-        canvas.requestFocus();
-    }
+
 //
-    public static void selectInstrument(String instrumentname){
-        isCircle =false;
+public static void selectInstrument(String instrumentname){
+
+    isCircle =false;
         isRectangle = false;
         isTriangle = false;
         isPolygon =false;
@@ -81,22 +83,11 @@ public class Controller {
         }
 
     }
-    //определеяет текущее положение курсора. Если оно изменено,значение меняется. Используется для эффекта отрисовки.
-    //плохой метод, не использовать!!!ВЫПИЛИТЬ ЕГО НАФИГ
-/*    public Point getFinishPoint(MouseEvent mouseEvent){
-        double x=0, y=0;
-        Point p;
-        if(mouseEvent.isPrimaryButtonDown() && x!=mouseEvent.getX() && y != mouseEvent.getY()   ) {
-            x = mouseEvent.getX();
-            y = mouseEvent.getY();
-        }
-        p=new Point((int)x,(int)y);
-        return p;
-    }
- */
+
+
     //перемещение мыши
     public void canvasMouseDragged(MouseEvent mouseEvent) {
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc = canvas.getGraphicsContext2D();
         gc.clearRect(0, 0, 571, 373);
         gc.setLineWidth(1.5);
         gc.setStroke(Color.BLACK);
@@ -105,11 +96,10 @@ public class Controller {
         //Создаем прямугольник
         if (isRectangle) {
             square.setRightDownAngle(p);
-
             //вызываем метод создания прямоугольника
             if (start == square.getLeftUpAngle() && mouseEvent.isPrimaryButtonDown()) square.paintShape(gc);
         }
-       //создаем круг
+        //создаем круг
         if (isCircle) {
              diam = mouseEvent.getY()-start.getY();
             circle.setDiametr(diam);
@@ -135,17 +125,23 @@ public class Controller {
             if (start == star.getCenter() && mouseEvent.isPrimaryButtonDown()) star.paintShape(gc);
         }
         //если есть выбранная фигура
+        System.out.println(key);
+
         if (isSelect){
             if (buffer.indexOfselect != -1 )
             {//пворачиваем фигуру в зависимости от движения мыши
-                if (isShift){
+                buffer.setChangePoint2(p);
+                if (key=="shift"){
                     //передаем методу нахождения радиуса текущее положение,которое будет второй точкой для угла поворота)
-                    buffer.setChangePoint2(p);
                     buffer.rotateFigure(gc);
                 }else {
+                    if (key=="ctrl"){
+                        //при перемещении мыши
+                    }else {
                     //меняем текущее положение фигуры
-                    buffer.setChangePoint2(p);//getFinishPoint(mouseEvent)
-                    buffer.changePositionFigure(gc);
+                        buffer.changePositionFigure(gc);
+                    }
+
                 }
             }
         }
@@ -162,6 +158,11 @@ public class Controller {
         Point p=new Point((int) mouseEvent.getX(), (int) mouseEvent.getY());
         //отрисовка новой текущей фигуры:
         //если задействован прямоугольник
+
+
+
+
+
         if (isRectangle)
         {   //записываем вторую точку для отрисовки прямоугольника
             square.setRightDownAngle(p);
@@ -194,18 +195,20 @@ public class Controller {
         if (isSelect){
             if (buffer.indexOfselect != -1 )
             {//поворачиваем фигуру в зависимости от движения мыши
-                if (isShift){
-                    //передаем методу нахождения радиуса текущее положение(
-                    // которое будет второй точкой для угла поворота)
-                    buffer.setChangePoint2(p);//getFinishPoint(mouseEvent)
+                buffer.setChangePoint2(p);//getFinishPoint(mouseEvent)
+                if (key=="shift"){
+                    //передаем методу нахождения радиуса текущее положение,которое будет второй точкой для угла поворота)
                     buffer.rotateFigure(gc);
-                    buffer.changeActiveFigure();
                 }else {
+                    if (key == "ctrl") {
+                        //при перемещении мыши
+                    } else {
+                        //меняем текущее положение фигуры
+                        buffer.changePositionFigure(gc);
+                    }
                     //меняем текущее положение фигуры
-                    buffer.setChangePoint2(p);//getFinishPoint(mouseEvent)
-                    buffer.changePositionFigure(gc);
-                    buffer.changeActiveFigure();
                 }
+                buffer.changeActiveFigure();
             }
         }
         //для проверки записи кординат, выводим их в консоль
@@ -215,6 +218,13 @@ public class Controller {
     public void canvasMousePressed(MouseEvent mouseEvent) {
         //узнаем начальную точку фигуры(отжатая кнопка мыши) или текущее положение мыши при нажатии
         start = new Point((int) mouseEvent.getX(), (int) mouseEvent.getY());
+
+        //поиск угла rotate
+        findAngle(start.getX(), start.getY());
+
+        gc.strokeLine(  100,200,start.getX(), start.getY());
+
+
         //если нужно выбрать фигуру
         if (isSelect){
             //если выбранной фигуры нет, находим ее
@@ -222,14 +232,10 @@ public class Controller {
             buffer.findActiveFigure(start);
             if (buffer.indexOfselect != -1 )//если есть выбранная фигура
             {//если задействован поворот фигуры, т.е. зажата клавиша Shift
-                if (isShift){
-                    //устанавливаем нажатую точку, как начало угла для оворота
+
                     buffer.setChangePoint1(start);
-                }else {
-                    //если задействовано изменеие положения фигуры
-                    //устанавливаем нажатую точку как точку,относительно которой будем менять положение фигуры
-                    buffer.setChangePoint1(start);
-                }
+
+
             }
         }
         //в зависимости от задействованной фигуры, создаем нужную
@@ -290,13 +296,15 @@ public class Controller {
 
         //если нужно выбрать фигуру
         if (isRotate){
-                buffer.setRotateAngle1(start);
+                buffer.setChangePoint1(start);
         }
 
         //для проверки записи кординат, выводим их в консоль
         System.out.println(mouseEvent.getX() + " "+  mouseEvent.getY());
     }
-//при нажатии на кнопку круга
+
+
+    //при нажатии на кнопку круга
     public void circleMouseClicked(MouseEvent mouseEvent) {
         Controller.selectInstrument("circle");
         choiseBox.setVisible(false);
@@ -310,37 +318,68 @@ public class Controller {
     public void selectMouseClicked(MouseEvent mouseEvent) {
         Controller.selectInstrument("select");
         choiseBox.setVisible(false);
+        canvas.requestFocus();
+
     }
     //при нажатии на кнопку треугольника
     public void triangleMouseClicked(MouseEvent mouseEvent) {
         Controller.selectInstrument("triangle");
         choiseBox.setVisible(false);
+        canvas.requestFocus();
+
     }
     //при нажатии на кнопку полигона(многоугольника)
     public void polygonMouseclicked(MouseEvent mouseEvent) {
         Controller.selectInstrument("polygon");
         choiseBox.setVisible(true);
         choiseBox.setItems(FXCollections.observableArrayList("3","5","7","9","11"));
+        canvas.requestFocus();
+
     }
 //при нажатии на кнопку звезда
     public void starMouseClicked(MouseEvent mouseEvent) {
         Controller.selectInstrument("star");
         choiseBox.setVisible(true);
         choiseBox.setItems(FXCollections.observableArrayList("3","5","7","9","11"));
+        canvas.requestFocus();
+
     }
     //при нажатии на поворот фигуры
     public void rotateMouseClicked(MouseEvent mouseEvent) {
         Controller.selectInstrument("rotate");
         choiseBox.setVisible(false);
+        canvas.requestFocus();
+
     }
     public void changeposMouseClicked(MouseEvent mouseEvent) {
         Controller.selectInstrument("changePosition");
         choiseBox.setVisible(false);
+        canvas.requestFocus();
+
     }
-
-
     public void canvasKeyPressed(KeyEvent keyEvent) {
-        if (keyEvent.isShiftDown()) isShift=true;
-        else isShift=false;
+
+        if (keyEvent.getCode() == KeyCode.SHIFT) key="shift";
+        if (keyEvent.getCode() == KeyCode.CONTROL) key="ctrl";
+        System.out.println(key);
     }
+    public void canvasKeyReleased(KeyEvent keyEvent) {
+        key="";
+    }
+    public void focus() {
+        canvas.requestFocus();
+    }
+
+    public void findAngle(int x2,int y2){
+        int y1=100,x1=200;
+        int scalar = x1 * x2 + y1 * y2;
+        double power1 = Math.sqrt(Math.pow(x1, 2) + Math.pow(y1, 2));
+        double power2 = Math.sqrt(Math.pow(x2, 2) + Math.pow(y2, 2));
+      //  System.out.println((scalar / (power1 * power2))*180/Math.PI );
+     //   System.out.println(((Math.PI-Math.atan2(y1-y2,-(x1-x2)))*180/Math.PI));
+    }
+
+
 }
+
+//        <Button fx:id="triangleButton" layoutX="12.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#triangleMouseClicked" text="Treangle" />

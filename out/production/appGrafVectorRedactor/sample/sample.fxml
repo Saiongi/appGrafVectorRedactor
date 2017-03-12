@@ -1,23 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.Double?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="654.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <Canvas fx:id="canvas" height="400.0" layoutX="-3.0" onKeyPressed="#canvasKeyPressed" onMouseClicked="#canvasMouseClicked" onMouseDragged="#canvasMouseDragged" onMousePressed="#canvasMousePressed" width="606.0" />
+      <Canvas fx:id="canvas" height="400.0" layoutX="-3.0" onKeyPressed="#canvasKeyPressed" onKeyReleased="#canvasKeyReleased" onMouseClicked="#canvasMouseClicked" onMouseDragged="#canvasMouseDragged" onMousePressed="#canvasMousePressed" width="606.0" />
       <Circle fx:id="circleButton" fill="DODGERBLUE" layoutX="23.0" layoutY="23.0" onMouseClicked="#circleMouseClicked" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-      <Rectangle fx:id="rectangleButton" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="18.0" layoutX="16.0" layoutY="40.0" onMouseClicked="#rectangleMouseClicked" stroke="BLACK" strokeType="INSIDE" width="18.0" />
+      <Rectangle fx:id="rectangleButton" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="18.0" layoutX="43.0" layoutY="14.0" onMouseClicked="#rectangleMouseClicked" stroke="BLACK" strokeType="INSIDE" width="18.0" />
       <Button fx:id="selectShapeButton" layoutX="8.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#selectMouseClicked" prefHeight="25.0" prefWidth="88.0" text="Select Shape" />
-      <Button fx:id="triangleButton" layoutX="12.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#triangleMouseClicked" text="Treangle" />
-      <Button fx:id="polygonButton" layoutX="11.0" layoutY="100.0" mnemonicParsing="false" onMouseClicked="#polygonMouseclicked" prefHeight="25.0" prefWidth="63.0" text="Polygon" />
       <ComboBox fx:id="choiseBox" layoutX="9.0" layoutY="165.0" prefHeight="25.0" prefWidth="31.0" promptText="3" visible="false" />
       <Button fx:id="starButton" layoutX="11.0" layoutY="131.0" mnemonicParsing="false" onMouseClicked="#starMouseClicked" text="Star" />
       <Button fx:id="rotate" layoutX="11.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#rotateMouseClicked" text="Rotate" />
       <Button id="changepos" layoutX="10.0" layoutY="270.0" mnemonicParsing="false" onMouseClicked="#changeposMouseClicked" text="changepos" textOverrun="CLIP" />
+      <Polygon fx:id="triangleButton" fill="DODGERBLUE" layoutX="84.0" layoutY="33.0" onMouseClicked="#triangleMouseClicked" scaleX="0.2" scaleY="0.2" stroke="BLACK" strokeType="INSIDE">
+        <points>
+          <Double fx:value="-50.0" />
+          <Double fx:value="40.0" />
+          <Double fx:value="50.0" />
+          <Double fx:value="40.0" />
+          <Double fx:value="0.0" />
+          <Double fx:value="-60.0" />
+        </points>
+      </Polygon>
+      <Polygon fx:id="polygonButton" fill="DODGERBLUE" layoutX="32.0" layoutY="-15.0" onMouseClicked="#polygonMouseclicked" scaleX="0.2" scaleY="0.2" stroke="BLACK" strokeType="INSIDE">
+        <points>
+          <Double fx:value="80.0" />
+            <Double fx:value="0.0" />
+          <Double fx:value="40.00" />
+          <Double fx:value="40.00" />
+          <Double fx:value="50.00" />
+          <Double fx:value="80.00" />
+          <Double fx:value="110.00" />
+          <Double fx:value="80.0" />
+          <Double fx:value="120.0" />
+           <Double fx:value="40.0" />
+            <Double fx:value="80.0" />
+            <Double fx:value="0.0" />
+        </points>
+      </Polygon>
    </children>
 </Pane>

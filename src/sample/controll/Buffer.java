@@ -56,19 +56,9 @@ import java.util.ArrayList;
 
     public void rotateFigure(GraphicsContext gc){
         shapes.get(indexOfselect).rotate(gc);
+        this.paintShapes(gc);
+    }
 
-
-    }
-    public void setRotateAngle1(Point p){
-        for (Shape shape : shapes) {
-            if (shape.select) shape.setPointForRotate1(p);
-        }
-    }
-    public void setRotateAngle2(Point p){
-        for (Shape shape : shapes) {
-            if (shape.select) shape.setPointForRotate2(p);
-        }
-    }
     public void setChangePoint1(Point p){
         shapes.get(indexOfselect).setStartChange(p);
     }
@@ -85,5 +75,8 @@ import java.util.ArrayList;
                 shape.paintShape(gc);
              }
 
+    }
+
+    public void resizeFigure(GraphicsContext gc) {
     }
 }

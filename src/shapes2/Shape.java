@@ -7,24 +7,12 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public abstract class Shape {
     public boolean select=false;
-    private Point pointForRotate1;
-    private Point pointForRotate2;
+
     private Point startChange;
     private Point finishChange;
 
 
-    public void setPointForRotate1(Point p){
-        this.pointForRotate1 =p;
-    }
-    public Point getPointForRotate1() {
-        return pointForRotate1;
-    }
-    public void setPointForRotate2(Point p){
-        this.pointForRotate2 = p;
-    }
-    public Point getPointForRotate2() {
-        return pointForRotate2;
-    }
+
     public void setStartChange(Point startChange) {
         this.startChange = startChange;
     }
