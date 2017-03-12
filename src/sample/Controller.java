@@ -19,12 +19,13 @@ public class Controller {
     public ComboBox choiseBox;
     Point start, finish;
     Buffer buffer;
+    private Shape shape;
     private Square square;
     private Circle circle;
     private Polygon polygon;
     private Triangle triangle;
     private Star star;
-    public String key;
+    public String key, instrName;
     //переиенная для определения наличия текущей выбранной фигуры
     boolean activeFigure=false;
     //переменнные для определения нажатия на иконку отрисовки и выбора изображаемой фигуры
@@ -83,7 +84,45 @@ public static void selectInstrument(String instrumentname){
         }
 
     }
+    public  void createInstrument(String instrumentname){
 
+
+        switch(instrumentname){
+            case "star":
+                shape=new Star();
+                if ( !choiseBox.getValue().equals(null)){
+                            shape.setCountOfSide(Integer.parseInt(choiseBox.getValue().toString()));
+                }
+                if (choiseBox.getValue().equals(null)) {
+                    choiseBox.setValue(choiseBox.getItems().get(0));
+                    shape.setCountOfSide(Integer.parseInt(choiseBox.getValue().toString()));
+                }
+                break;
+            case "triangle":
+                shape = new Triangle();
+                break;
+            case "polygon":
+                shape=new Polygon();
+                if ( !choiseBox.getValue().equals(null)){
+                    shape.setCountOfSide(Integer.parseInt(choiseBox.getValue().toString()));
+                }
+                if (choiseBox.getValue().equals(null)) {
+                    choiseBox.setValue(choiseBox.getItems().get(0));
+                    shape.setCountOfSide(Integer.parseInt(choiseBox.getValue().toString()));
+                }
+                break;
+            case "rectangle":
+                shape= new Square();
+                break;
+            case "circle":
+                shape=new Circle();
+                break;
+            case "select":
+
+                break;
+        }
+
+    }
 
     //перемещение мыши
     public void canvasMouseDragged(MouseEvent mouseEvent) {
@@ -93,41 +132,17 @@ public static void selectInstrument(String instrumentname){
         gc.setStroke(Color.BLACK);
         buffer.paintShapes(gc);
         Point p=new Point((int) mouseEvent.getX(), (int) mouseEvent.getY());
-        //Создаем прямугольник
-        if (isRectangle) {
-            square.setRightDownAngle(p);
-            //вызываем метод создания прямоугольника
-            if (start == square.getLeftUpAngle() && mouseEvent.isPrimaryButtonDown()) square.paintShape(gc);
-        }
-        //создаем круг
-        if (isCircle) {
-             diam = mouseEvent.getY()-start.getY();
-            circle.setDiametr(diam);
-            //вызываем метод создания круга
-            if (start == circle.getLeftUpAngle() && mouseEvent.isPrimaryButtonDown()) circle.paintShape(gc);
-        }
-        //создаем треугольник
-        if (isTriangle) {
-            triangle.setHelpPoint(p);
-            //вызываем метод создания треугольника
-            if (start == triangle.getCenterAngle() && mouseEvent.isPrimaryButtonDown()) triangle.paintShape(gc);
-        }
-        //изменяем размер многоугольника в зависимости от движения мыши
-        if (isPolygon) {
-            polygon.setRadius(p);
-            //вызываем метод отрисовки многоугольника
-            if (start == polygon.getCenter() && mouseEvent.isPrimaryButtonDown()) polygon.paintShape(gc);
-        }
-        //изменяем размер звезды в зависимости от движения мыши
-        if (isStar) {
-            star.setRadius(p);
-            //вызываем метод отрисовки звезды
-            if (start == star.getCenter() && mouseEvent.isPrimaryButtonDown()) star.paintShape(gc);
+
+        if (isStar || isCircle||isPolygon ||isRectangle ||isTriangle||isRectangle){
+
+        shape.setFinishPoint(p);
+        if (start == shape.getStartPoint() && mouseEvent.isPrimaryButtonDown()) shape.paintShape(gc);
         }
         //если есть выбранная фигура
         System.out.println(key);
 
         if (isSelect){
+
             if (buffer.indexOfselect != -1 )
             {//пворачиваем фигуру в зависимости от движения мыши
                 buffer.setChangePoint2(p);
@@ -136,13 +151,16 @@ public static void selectInstrument(String instrumentname){
                     buffer.rotateFigure(gc);
                 }else {
                     if (key=="ctrl"){
-                        //при перемещении мыши
+                        //при
+                        buffer.resizeFigure(gc);
+                        buffer.paintShapes(gc);
                     }else {
                     //меняем текущее положение фигуры
                         buffer.changePositionFigure(gc);
                     }
 
                 }
+                buffer.changeActiveFigure();
             }
         }
     }
@@ -160,37 +178,12 @@ public static void selectInstrument(String instrumentname){
         //если задействован прямоугольник
 
 
+       if (isStar || isCircle||isPolygon ||isRectangle ||isTriangle||isRectangle){
+           shape.setFinishPoint(p);
+           buffer.addShape(shape);
 
+       }
 
-
-        if (isRectangle)
-        {   //записываем вторую точку для отрисовки прямоугольника
-            square.setRightDownAngle(p);
-            buffer.addShape(square);
-        }
-        if (isCircle)
-        {   //записываем вторую точку для отрисовки круга
-             diam = mouseEvent.getY()-start.getY() ;
-            circle.setDiametr( diam )   ;
-            buffer.addShape(circle);
-        }
-        if (isTriangle)
-        {   //записываем вторую точку для отрисовки прямоугольника
-            triangle.setHelpPoint(p);
-            buffer.addShape(triangle);
-        }
-        if (isPolygon){
-            //передаем методу нахождения радиуса текущее положение(точку для построения вектора
-            // который будет радиусом)
-            polygon.setRadius(p);
-            buffer.addShape(polygon);
-        }
-        if (isStar){
-            //передаем методу нахождения радиуса текущее положение(точку для построения вектора
-            // который будет радиусом)
-            star.setRadius(p);
-            buffer.addShape(star);
-        }
         //выбор фигуры-поворот или смещение
         if (isSelect){
             if (buffer.indexOfselect != -1 )
@@ -202,9 +195,13 @@ public static void selectInstrument(String instrumentname){
                 }else {
                     if (key == "ctrl") {
                         //при перемещении мыши
+                        buffer.resizeFigure(gc);
+                        buffer.paintShapes(gc);
                     } else {
-                        //меняем текущее положение фигуры
-                        buffer.changePositionFigure(gc);
+                        if (key == "alt") {
+                            //меняем текущее положение фигуры
+                            buffer.changePositionFigure(gc);
+                        }
                     }
                     //меняем текущее положение фигуры
                 }
@@ -220,9 +217,9 @@ public static void selectInstrument(String instrumentname){
         start = new Point((int) mouseEvent.getX(), (int) mouseEvent.getY());
 
         //поиск угла rotate
-        findAngle(start.getX(), start.getY());
+//        findAngle(start.getX(), start.getY());
 
-        gc.strokeLine(  100,200,start.getX(), start.getY());
+//        gc.strokeLine(  100,200,start.getX(), start.getY());
 
 
         //если нужно выбрать фигуру
@@ -231,106 +228,55 @@ public static void selectInstrument(String instrumentname){
             //ищем наличие выделенной фигуры(находится ли какая то фигура в этой точке)
             buffer.findActiveFigure(start);
             if (buffer.indexOfselect != -1 )//если есть выбранная фигура
-            {//если задействован поворот фигуры, т.е. зажата клавиша Shift
-
+            {//запись стартовой точки изменения
                     buffer.setChangePoint1(start);
-
-
             }
         }
         //в зависимости от задействованной фигуры, создаем нужную
-
-        //создаем круг
-        if (isCircle)
-        {
-            circle = new Circle();
-            //записываем первую координату
-            circle.setLeftUpAngle(start);
+        if (isStar || isCircle||isPolygon ||isRectangle ||isTriangle||isRectangle) {
+            this.createInstrument(instrName);
+            shape.setStartPoint(start);
         }
-        //создаем прямоугольник
-        if (isRectangle)
-        {
-            square = new Square();
-            //записываем первую координату
-            square.setLeftUpAngle(start);
-
-        }
-        //создаем треугольник
-        if (isTriangle)
-        {
-            triangle = new Triangle();
-            //записываем первую координату
-            triangle.setCenterAngle(start);
-        }
-        //создаем многоугольник
-        if (isPolygon){
-            polygon = new Polygon();
-                //!choiseBox.isShowing() &&
-                if ( !choiseBox.getValue().equals(null)){
-                    polygon.setCountOfSide(Integer.parseInt(choiseBox.getValue().toString()));
-                }
-                if (choiseBox.getValue().equals(null)) {
-                    choiseBox.setValue(choiseBox.getItems().get(0));
-                    polygon.setCountOfSide(Integer.parseInt(choiseBox.getValue().toString()));
-                }
-            //polygon.setCountOfSide(11);
-            //записываем центр многоугольника
-            polygon.setCenter(start);
-        }
-        //создаем звезду
-        if (isStar){
-            star = new Star();
-
-            if ( !choiseBox.getValue().equals(null)){
-                star.setCountOfSide(Integer.parseInt(choiseBox.getValue().toString()));
-            }
-
-            if (choiseBox.getValue().equals(null)) {
-                star.setCountOfSide(Integer.parseInt(choiseBox.getValue().toString()));
-            }
-            //polygon.setCountOfSide(11);
-            //записываем центр многоугольника
-            star.setCenter(start);
-
-        }
-
+        /*
         //если нужно выбрать фигуру
-        if (isRotate){
-                buffer.setChangePoint1(start);
-        }
-
+        if (isRotate){                buffer.setChangePoint1(start);}
+*/
         //для проверки записи кординат, выводим их в консоль
         System.out.println(mouseEvent.getX() + " "+  mouseEvent.getY());
     }
 
-
     //при нажатии на кнопку круга
     public void circleMouseClicked(MouseEvent mouseEvent) {
-        Controller.selectInstrument("circle");
+        instrName="circle";
+        Controller.selectInstrument(instrName);
         choiseBox.setVisible(false);
     }
 // при нажатии на кнопку прямугольника
     public void rectangleMouseClicked(MouseEvent mouseEvent) {
-        Controller.selectInstrument("rectangle");
+      instrName="rectangle";
+        Controller.selectInstrument(instrName);
         choiseBox.setVisible(false);
     }
-// /при нажатии на кнопку выбрать фигуру
+// при нажатии на кнопку выбрать фигуру
     public void selectMouseClicked(MouseEvent mouseEvent) {
-        Controller.selectInstrument("select");
+       instrName="select";
+        Controller.selectInstrument(instrName);
         choiseBox.setVisible(false);
         canvas.requestFocus();
 
     }
     //при нажатии на кнопку треугольника
     public void triangleMouseClicked(MouseEvent mouseEvent) {
-        Controller.selectInstrument("triangle");
+        instrName="triangle";
+        Controller.selectInstrument(instrName);
         choiseBox.setVisible(false);
         canvas.requestFocus();
 
     }
     //при нажатии на кнопку полигона(многоугольника)
     public void polygonMouseclicked(MouseEvent mouseEvent) {
-        Controller.selectInstrument("polygon");
+        instrName="polygon";
+        Controller.selectInstrument(instrName);
         choiseBox.setVisible(true);
         choiseBox.setItems(FXCollections.observableArrayList("3","5","7","9","11"));
         canvas.requestFocus();
@@ -338,7 +284,8 @@ public static void selectInstrument(String instrumentname){
     }
 //при нажатии на кнопку звезда
     public void starMouseClicked(MouseEvent mouseEvent) {
-        Controller.selectInstrument("star");
+        instrName="star";
+        Controller.selectInstrument(instrName);
         choiseBox.setVisible(true);
         choiseBox.setItems(FXCollections.observableArrayList("3","5","7","9","11"));
         canvas.requestFocus();
@@ -346,13 +293,16 @@ public static void selectInstrument(String instrumentname){
     }
     //при нажатии на поворот фигуры
     public void rotateMouseClicked(MouseEvent mouseEvent) {
-        Controller.selectInstrument("rotate");
+        instrName ="rotate";
+        Controller.selectInstrument(instrName);
+
         choiseBox.setVisible(false);
         canvas.requestFocus();
 
     }
     public void changeposMouseClicked(MouseEvent mouseEvent) {
-        Controller.selectInstrument("changePosition");
+       instrName ="changePosition";
+        Controller.selectInstrument(instrName);
         choiseBox.setVisible(false);
         canvas.requestFocus();
 

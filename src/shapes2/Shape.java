@@ -8,10 +8,27 @@ import javafx.scene.canvas.GraphicsContext;
 public abstract class Shape {
     public boolean select=false;
 
-    private Point startChange;
+     Point startChange;
     private Point finishChange;
+    protected Point startPoint;
+    private Point finishPoint;
 
 
+    public void setCountOfSide(int n){
+
+    }
+    public void setStartPoint(Point startPoint) {
+        this.startPoint = startPoint;
+    }
+    public Point getStartPoint() {
+        return startPoint;
+    }
+    public void setFinishPoint(Point finishPoint) {
+        this.finishPoint = finishPoint;
+    }
+    public Point getFinishPoint() {
+        return finishPoint;
+    }
 
     public void setStartChange(Point startChange) {
         this.startChange = startChange;

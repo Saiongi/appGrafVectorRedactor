@@ -22,7 +22,7 @@ public class Polygon extends Shape {
     public Point getCenter() {
         return center;
     }
-
+    @Override
     public void setCountOfSide(int countOfSide) {
         this.countOfSide = countOfSide;
     }
@@ -36,7 +36,6 @@ public class Polygon extends Shape {
     public ArrayList<Point> getPoligonAngles() {
         return poligonAngles;
     }
-
     public void setRadius(Point finishPoint) {
         int x1=this.getCenter().getX();
         int x2=finishPoint.getX();
@@ -75,13 +74,24 @@ public class Polygon extends Shape {
         this.setPoligonAngles(angles);
     }
 
+    @Override
+    public void setFinishPoint(Point finishPoint){
+
+        this.setRadius(finishPoint);
+    }
+    @Override
+    public void setStartPoint(Point startPoint){
+        this.startPoint =startPoint;
+        this.setCenter(startPoint);
+
+    }
 
     @Override
     public void paintShape(GraphicsContext gc) {
        if (!this.select){
            setAngles();
        }
-
+        setAngles();//вытащила из if сверху для причины выяснения непрорисовки масштабируемости в процессе
 
         if (this.select) gc.setStroke(Color.RED);
         else gc.setStroke(Color.BLACK);
@@ -99,7 +109,7 @@ public class Polygon extends Shape {
         int iii=(int)ii;
         int jjj=(int)jj;
 
-        for (int i =iii-3;i<(iii+3);i++)
+        for (int i =iii-4;i<(iii+4);i++)
         {
             if (i==jjj) return true;
         }

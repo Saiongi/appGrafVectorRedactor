@@ -48,6 +48,16 @@ public class Star extends  Polygon {
         return angle;
     }
 
+    @Override
+    public void setFinishPoint(Point finishPoint){
+        this.setRadius(finishPoint);
+    }
+    @Override
+    public void setStartPoint(Point startPoint){
+        this.startPoint =startPoint;
+        this.setCenter(startPoint);
+        System.out.println(this.getCenter().getX()+" "+this.getCenter().getY());
+    }
     //вычисление вершин звезды
     @Override
     public void setAngles() {
@@ -87,6 +97,10 @@ public class Star extends  Polygon {
             this.setRadius2();
             this.setAngles();
         }
+        this.setRadius2();
+
+        this.setAngles();//вытащила из if сверху для причины выяснения непрорисовки масштабируемости в процессе
+
         if (this.select) gc.setStroke(Color.RED);
         else gc.setStroke(Color.BLACK);
 

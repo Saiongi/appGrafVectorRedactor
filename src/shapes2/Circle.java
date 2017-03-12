@@ -36,6 +36,16 @@ public class Circle extends Shape {
     public Point getCenter() {
         return center;
     }
+    @Override
+    public void setFinishPoint(Point finishPoint){
+         double diam = finishPoint.getY()-this.getLeftUpAngle().getY() ;
+        this.setDiametr(diam);
+    }
+    @Override
+    public void setStartPoint(Point startPoint){
+        this.setLeftUpAngle(startPoint);
+        this.startPoint =startPoint;
+    }
 
     @Override
     public void paintShape(GraphicsContext gc){

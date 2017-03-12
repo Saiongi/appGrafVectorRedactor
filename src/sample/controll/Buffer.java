@@ -16,7 +16,8 @@ import java.util.ArrayList;
 
      public ArrayList<Shape> shapes;
     public int indexOfselect=-1;
-
+    private Point changePoint1;
+    private Point changePoint2;
     public Buffer(){
     shapes = new ArrayList<Shape>();
     }
@@ -61,9 +62,11 @@ import java.util.ArrayList;
 
     public void setChangePoint1(Point p){
         shapes.get(indexOfselect).setStartChange(p);
+        this.changePoint1=p;
     }
     public void setChangePoint2(Point p){
         shapes.get(indexOfselect).setFinishChange(p);
+        this.changePoint2=p;
     }
     public void changePositionFigure(GraphicsContext gc){
        shapes.get(indexOfselect).changePosition() ;
@@ -78,5 +81,7 @@ import java.util.ArrayList;
     }
 
     public void resizeFigure(GraphicsContext gc) {
+        shapes.get(indexOfselect).setFinishPoint(this.changePoint2);
+        this.paintShapes(gc);
     }
 }

@@ -33,6 +33,17 @@ public class Triangle extends Shape {
         return leftDownAngle;
     }
 
+    @Override
+    public void setFinishPoint(Point finishPoint){
+
+        this.setHelpPoint(finishPoint);
+
+    }
+    @Override
+    public void setStartPoint(Point startPoint){
+        this.setCenterAngle(startPoint);
+        this.startPoint =startPoint;
+    }
     //доп перем для определения в какую сторону нарисован треуголбник
     private String napravTreug ="";
     //эта точка лежит в центре противоположной стороны от первого угла(центрального), ровно по середине
@@ -91,7 +102,11 @@ public class Triangle extends Shape {
     public void paintShape(GraphicsContext gc){
 
 
-        if (this.select) gc.setStroke(Color.RED);
+        if (this.select){
+            setAngles();
+            this.getCenterAngle().setPoint(gc);
+            gc.setStroke(Color.RED);
+        }
         else{
             setAngles();
             gc.setStroke(Color.BLACK);

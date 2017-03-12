@@ -41,7 +41,15 @@ public class Square extends Shape {
     public Point getRightUpAngle() {
         return rightUpAngle;
     }
-
+    @Override
+    public void setFinishPoint(Point finishPoint){
+        this.setRightDownAngle(finishPoint);
+    }
+    @Override
+    public void setStartPoint(Point startPoint){
+        this.setLeftUpAngle(startPoint);
+        this.startPoint =startPoint;
+    }
     @Override
     public void paintShape(GraphicsContext gc){
         if (this.select) gc.setStroke(Color.RED);
