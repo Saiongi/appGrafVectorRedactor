@@ -149,17 +149,19 @@ public static void selectInstrument(String instrumentname){
                 if (key=="shift"){
                     //передаем методу нахождения радиуса текущее положение,которое будет второй точкой для угла поворота)
                     buffer.rotateFigure(gc);
-                }else {
-                    if (key=="ctrl"){
-                        //при
-                        buffer.resizeFigure(gc);
-                        buffer.paintShapes(gc);
-                    }else {
+                }
+                if (key=="ctrl") {
+                     //при
+                     buffer.resizeFigure(gc);
+                     buffer.paintShapes(gc);
+                 }
+
+                if (key==""){
                     //меняем текущее положение фигуры
                         buffer.changePositionFigure(gc);
-                    }
-
                 }
+
+
                 buffer.changeActiveFigure();
             }
         }
@@ -168,6 +170,7 @@ public static void selectInstrument(String instrumentname){
     public void canvasMouseClicked(MouseEvent mouseEvent) {
         //передаем gc
         gc = canvas.getGraphicsContext2D();
+        
         gc.setLineWidth(2.0);
         gc.setStroke(Color.BLACK);
         //отрисовываем фигуры из буфера
@@ -203,6 +206,7 @@ public static void selectInstrument(String instrumentname){
                             buffer.changePositionFigure(gc);
                         }
                     }
+
                     //меняем текущее положение фигуры
                 }
                 buffer.changeActiveFigure();
@@ -229,6 +233,8 @@ public static void selectInstrument(String instrumentname){
             buffer.findActiveFigure(start);
             if (buffer.indexOfselect != -1 )//если есть выбранная фигура
             {//запись стартовой точки изменения
+
+
                     buffer.setChangePoint1(start);
             }
         }
@@ -311,6 +317,17 @@ public static void selectInstrument(String instrumentname){
 
         if (keyEvent.getCode() == KeyCode.SHIFT) key="shift";
         if (keyEvent.getCode() == KeyCode.CONTROL) key="ctrl";
+        if (keyEvent.getCode() == KeyCode.DELETE){
+            //меняем текущее положение фигуры
+            buffer.findActiveFigure(start);
+            if (buffer.indexOfselect != -1 ) {
+                key="del";
+                buffer.deleteShape();
+            }
+
+        }
+        gc.clearRect(0, 0, 571, 373);
+        buffer.paintShapes(gc);
         System.out.println(key);
     }
     public void canvasKeyReleased(KeyEvent keyEvent) {

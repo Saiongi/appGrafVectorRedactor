@@ -13,13 +13,15 @@ import java.util.ArrayList;
  * Класс, выполняющий функцию буффера между отображающимися фигурами и коллеккцией существующих фигур
  */
  public  class Buffer {
-
+    public ArrayList <Integer> memory;
+        int i=0;
      public ArrayList<Shape> shapes;
     public int indexOfselect=-1;
     private Point changePoint1;
     private Point changePoint2;
     public Buffer(){
     shapes = new ArrayList<Shape>();
+    memory = new ArrayList<Integer>();
     }
 
     public void changeActiveFigure(){
@@ -38,7 +40,8 @@ import java.util.ArrayList;
                 indexOfselect=i;
                 g=1;
                 System.out.println("Попали");
-                return;
+                memory.add(indexOfselect);
+                i++;
             }
         }
         if (g==0){
@@ -53,7 +56,9 @@ import java.util.ArrayList;
     public void addShape(Shape shape){
         shapes.add(shape);
         System.out.println("add shape"+ shape.toString());
+
     }
+
 
     public void rotateFigure(GraphicsContext gc){
         shapes.get(indexOfselect).rotate(gc);
@@ -77,11 +82,21 @@ import java.util.ArrayList;
              for (Shape shape : shapes) {
                 shape.paintShape(gc);
              }
-
     }
 
     public void resizeFigure(GraphicsContext gc) {
         shapes.get(indexOfselect).setFinishPoint(this.changePoint2);
         this.paintShapes(gc);
+    }
+
+    public void deleteShape() {
+        System.out.println("Delete shape"+shapes.get(indexOfselect).toString());
+        shapes.remove(indexOfselect);
+        for (int i=0;i<memory.size();i++){
+            if (memory.get(i)==indexOfselect) memory.remove(i);
+        }
+        for (int i=0;i<memory.size();i++){
+        if (memory.get(i)>indexOfselect) memory.set(i, memory.get(i)-1 );
+        }
     }
 }

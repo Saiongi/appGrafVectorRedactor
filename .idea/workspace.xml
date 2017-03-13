@@ -62,12 +62,13 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="155" column="47" lean-forward="true" selection-start-line="155" selection-start-column="47" selection-end-line="155" selection-end-column="47" />
+            <state relative-caret-position="260">
+              <caret line="324" column="27" lean-forward="true" selection-start-line="324" selection-start-column="27" selection-end-line="324" selection-end-column="27" />
               <folding>
                 <element signature="method#selectInstrument#0;class#Controller#0" expanded="false" />
                 <element signature="method#createInstrument#0;class#Controller#0" expanded="false" />
-                <element signature="method#canvasMouseClicked#0;class#Controller#0" expanded="false" />
+                <element signature="method#canvasMouseDragged#0;class#Controller#0" expanded="false" />
+                <element signature="method#canvasMousePressed#0;class#Controller#0" expanded="false" />
                 <element signature="method#circleMouseClicked#0;class#Controller#0" expanded="false" />
                 <element signature="method#rectangleMouseClicked#0;class#Controller#0" expanded="false" />
                 <element signature="method#selectMouseClicked#0;class#Controller#0" expanded="false" />
@@ -76,7 +77,6 @@
                 <element signature="method#starMouseClicked#0;class#Controller#0" expanded="false" />
                 <element signature="method#rotateMouseClicked#0;class#Controller#0" expanded="false" />
                 <element signature="method#changeposMouseClicked#0;class#Controller#0" expanded="false" />
-                <element signature="method#canvasKeyPressed#0;class#Controller#0" expanded="false" />
                 <element signature="method#findAngle#0;class#Controller#0" expanded="false" />
               </folding>
             </state>
@@ -109,14 +109,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Buffer.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Buffer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/controll/Buffer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="75" column="16" lean-forward="false" selection-start-line="75" selection-start-column="16" selection-end-line="75" selection-end-column="16" />
+            <state relative-caret-position="266">
+              <caret line="91" column="16" lean-forward="false" selection-start-line="91" selection-start-column="16" selection-end-line="91" selection-end-column="16" />
               <folding>
-                <element signature="method#findActiveFigure#0;class#Buffer#0" expanded="false" />
-                <element signature="method#addShape#0;class#Buffer#0" expanded="false" />
+                <element signature="method#setChangePoint1#0;class#Buffer#0" expanded="false" />
+                <element signature="method#setChangePoint2#0;class#Buffer#0" expanded="false" />
+                <element signature="method#changePositionFigure#0;class#Buffer#0" expanded="false" />
+                <element signature="method#paintShapes#0;class#Buffer#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -125,7 +127,7 @@
       <file leaf-file-name="Shape.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/shapes2/Shape.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
+            <state relative-caret-position="357">
               <caret line="25" column="16" lean-forward="false" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
               <folding>
                 <element signature="e#431#432#0" expanded="true" />
@@ -140,15 +142,9 @@
       <file leaf-file-name="Square.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/shapes2/Square.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="50" column="36" lean-forward="true" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="36" />
+            <state relative-caret-position="527">
+              <caret line="50" column="36" lean-forward="false" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="36" />
               <folding>
-                <element signature="e#332#333#0" expanded="true" />
-                <element signature="e#378#379#0" expanded="true" />
-                <element signature="e#953#954#0" expanded="true" />
-                <element signature="e#988#989#0" expanded="true" />
-                <element signature="e#1053#1054#0" expanded="true" />
-                <element signature="e#1104#1105#0" expanded="true" />
                 <element signature="method#paintShape#0;class#Square#0" expanded="false" />
                 <element signature="method#easySelect#0;class#Square#0" expanded="false" />
                 <element signature="method#setAngles#0;class#Square#0" expanded="false" />
@@ -160,8 +156,8 @@
       <file leaf-file-name="Circle.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/shapes2/Circle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="51" column="26" lean-forward="true" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
+            <state relative-caret-position="510">
+              <caret line="51" column="26" lean-forward="false" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
               <folding>
                 <element signature="method#setCenter#0;class#Circle#0" expanded="false" />
                 <element signature="method#setFinishPoint#0;class#Circle#0" expanded="false" />
@@ -175,7 +171,7 @@
       <file leaf-file-name="Triangle.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/shapes2/Triangle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
+            <state relative-caret-position="918">
               <caret line="108" column="9" lean-forward="false" selection-start-line="108" selection-start-column="9" selection-end-line="108" selection-end-column="9" />
               <folding>
                 <element signature="method#setAngles#0;class#Triangle#0" expanded="false" />
@@ -184,16 +180,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Polygon.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Polygon.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/shapes2/Polygon.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="111" column="40" lean-forward="true" selection-start-line="111" selection-start-column="40" selection-end-line="111" selection-end-column="40" />
+            <state relative-caret-position="1156">
+              <caret line="109" column="24" lean-forward="false" selection-start-line="109" selection-start-column="24" selection-end-line="109" selection-end-column="24" />
               <folding>
-                <element signature="e#379#380#0" expanded="true" />
-                <element signature="e#415#416#0" expanded="true" />
-                <element signature="e#446#447#0" expanded="true" />
-                <element signature="e#475#476#0" expanded="true" />
                 <element signature="method#setAngles#0;class#Polygon#0" expanded="false" />
               </folding>
             </state>
@@ -203,7 +195,7 @@
       <file leaf-file-name="Star.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/shapes2/Star.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
+            <state relative-caret-position="612">
               <caret line="100" column="0" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
               <folding>
                 <element signature="method#setRadius2#0;class#Star#0" expanded="false" />
@@ -236,6 +228,7 @@
       <find>selectInstrument</find>
       <find>key</find>
       <find>findAngle</find>
+      <find>del</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -264,11 +257,11 @@
         <option value="$PROJECT_DIR$/src/shapes2/Square.java" />
         <option value="$PROJECT_DIR$/src/shapes2/Circle.java" />
         <option value="$PROJECT_DIR$/src/shapes2/Shape.java" />
-        <option value="$PROJECT_DIR$/src/sample/controll/Buffer.java" />
-        <option value="$PROJECT_DIR$/src/sample/Controller.java" />
         <option value="$PROJECT_DIR$/src/shapes2/Triangle.java" />
         <option value="$PROJECT_DIR$/src/shapes2/Star.java" />
         <option value="$PROJECT_DIR$/src/shapes2/Polygon.java" />
+        <option value="$PROJECT_DIR$/src/sample/controll/Buffer.java" />
+        <option value="$PROJECT_DIR$/src/sample/Controller.java" />
       </list>
     </option>
   </component>
@@ -298,7 +291,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -328,6 +320,7 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -634,14 +627,13 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32676518" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11494253" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11494253" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -661,6 +653,7 @@
       <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32676518" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -777,7 +770,8 @@
           <folding>
             <element signature="method#selectInstrument#0;class#Controller#0" expanded="false" />
             <element signature="method#createInstrument#0;class#Controller#0" expanded="false" />
-            <element signature="method#canvasMouseClicked#0;class#Controller#0" expanded="false" />
+            <element signature="method#canvasMouseDragged#0;class#Controller#0" expanded="false" />
+            <element signature="method#canvasMousePressed#0;class#Controller#0" expanded="false" />
             <element signature="method#circleMouseClicked#0;class#Controller#0" expanded="false" />
             <element signature="method#rectangleMouseClicked#0;class#Controller#0" expanded="false" />
             <element signature="method#selectMouseClicked#0;class#Controller#0" expanded="false" />
@@ -786,7 +780,6 @@
             <element signature="method#starMouseClicked#0;class#Controller#0" expanded="false" />
             <element signature="method#rotateMouseClicked#0;class#Controller#0" expanded="false" />
             <element signature="method#changeposMouseClicked#0;class#Controller#0" expanded="false" />
-            <element signature="method#canvasKeyPressed#0;class#Controller#0" expanded="false" />
             <element signature="method#findAngle#0;class#Controller#0" expanded="false" />
           </folding>
         </state>
@@ -810,7 +803,8 @@
           <folding>
             <element signature="method#selectInstrument#0;class#Controller#0" expanded="false" />
             <element signature="method#createInstrument#0;class#Controller#0" expanded="false" />
-            <element signature="method#canvasMouseClicked#0;class#Controller#0" expanded="false" />
+            <element signature="method#canvasMouseDragged#0;class#Controller#0" expanded="false" />
+            <element signature="method#canvasMousePressed#0;class#Controller#0" expanded="false" />
             <element signature="method#circleMouseClicked#0;class#Controller#0" expanded="false" />
             <element signature="method#rectangleMouseClicked#0;class#Controller#0" expanded="false" />
             <element signature="method#selectMouseClicked#0;class#Controller#0" expanded="false" />
@@ -819,7 +813,6 @@
             <element signature="method#starMouseClicked#0;class#Controller#0" expanded="false" />
             <element signature="method#rotateMouseClicked#0;class#Controller#0" expanded="false" />
             <element signature="method#changeposMouseClicked#0;class#Controller#0" expanded="false" />
-            <element signature="method#canvasKeyPressed#0;class#Controller#0" expanded="false" />
             <element signature="method#findAngle#0;class#Controller#0" expanded="false" />
           </folding>
         </state>
@@ -1012,24 +1005,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="188" lean-forward="false" selection-start-line="16" selection-start-column="188" selection-end-line="16" selection-end-column="188" />
-          <folding>
-            <element signature="n#points#0;n#Polygon#0;n#children#0;n#Pane#0;n#!!top" expanded="false" />
-            <element signature="n#points#0;n#Polygon#1;n#children#0;n#Pane#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/shapes2/Circle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="51" column="26" lean-forward="true" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
+        <state relative-caret-position="510">
+          <caret line="51" column="26" lean-forward="false" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
           <folding>
             <element signature="method#setCenter#0;class#Circle#0" expanded="false" />
             <element signature="method#setFinishPoint#0;class#Circle#0" expanded="false" />
@@ -1041,15 +1020,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/shapes2/Square.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="50" column="36" lean-forward="true" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="36" />
+        <state relative-caret-position="527">
+          <caret line="50" column="36" lean-forward="false" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="36" />
           <folding>
-            <element signature="e#332#333#0" expanded="true" />
-            <element signature="e#378#379#0" expanded="true" />
-            <element signature="e#953#954#0" expanded="true" />
-            <element signature="e#988#989#0" expanded="true" />
-            <element signature="e#1053#1054#0" expanded="true" />
-            <element signature="e#1104#1105#0" expanded="true" />
             <element signature="method#paintShape#0;class#Square#0" expanded="false" />
             <element signature="method#easySelect#0;class#Square#0" expanded="false" />
             <element signature="method#setAngles#0;class#Square#0" expanded="false" />
@@ -1059,7 +1032,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/shapes2/Shape.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
+        <state relative-caret-position="357">
           <caret line="25" column="16" lean-forward="false" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
           <folding>
             <element signature="e#431#432#0" expanded="true" />
@@ -1078,42 +1051,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/controll/Buffer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="75" column="16" lean-forward="false" selection-start-line="75" selection-start-column="16" selection-end-line="75" selection-end-column="16" />
-          <folding>
-            <element signature="method#findActiveFigure#0;class#Buffer#0" expanded="false" />
-            <element signature="method#addShape#0;class#Buffer#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="155" column="47" lean-forward="true" selection-start-line="155" selection-start-column="47" selection-end-line="155" selection-end-column="47" />
-          <folding>
-            <element signature="method#selectInstrument#0;class#Controller#0" expanded="false" />
-            <element signature="method#createInstrument#0;class#Controller#0" expanded="false" />
-            <element signature="method#canvasMouseClicked#0;class#Controller#0" expanded="false" />
-            <element signature="method#circleMouseClicked#0;class#Controller#0" expanded="false" />
-            <element signature="method#rectangleMouseClicked#0;class#Controller#0" expanded="false" />
-            <element signature="method#selectMouseClicked#0;class#Controller#0" expanded="false" />
-            <element signature="method#triangleMouseClicked#0;class#Controller#0" expanded="false" />
-            <element signature="method#polygonMouseclicked#0;class#Controller#0" expanded="false" />
-            <element signature="method#starMouseClicked#0;class#Controller#0" expanded="false" />
-            <element signature="method#rotateMouseClicked#0;class#Controller#0" expanded="false" />
-            <element signature="method#changeposMouseClicked#0;class#Controller#0" expanded="false" />
-            <element signature="method#canvasKeyPressed#0;class#Controller#0" expanded="false" />
-            <element signature="method#findAngle#0;class#Controller#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/shapes2/Triangle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
+        <state relative-caret-position="918">
           <caret line="108" column="9" lean-forward="false" selection-start-line="108" selection-start-column="9" selection-end-line="108" selection-end-column="9" />
           <folding>
             <element signature="method#setAngles#0;class#Triangle#0" expanded="false" />
@@ -1123,7 +1063,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/shapes2/Star.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
+        <state relative-caret-position="612">
           <caret line="100" column="0" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
           <folding>
             <element signature="method#setRadius2#0;class#Star#0" expanded="false" />
@@ -1140,14 +1080,59 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/shapes2/Polygon.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="111" column="40" lean-forward="true" selection-start-line="111" selection-start-column="40" selection-end-line="111" selection-end-column="40" />
+        <state relative-caret-position="1156">
+          <caret line="109" column="24" lean-forward="false" selection-start-line="109" selection-start-column="24" selection-end-line="109" selection-end-column="24" />
           <folding>
-            <element signature="e#379#380#0" expanded="true" />
-            <element signature="e#415#416#0" expanded="true" />
-            <element signature="e#446#447#0" expanded="true" />
-            <element signature="e#475#476#0" expanded="true" />
             <element signature="method#setAngles#0;class#Polygon#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="188" lean-forward="false" selection-start-line="16" selection-start-column="188" selection-end-line="16" selection-end-column="188" />
+          <folding>
+            <element signature="n#points#0;n#Polygon#0;n#children#0;n#Pane#0;n#!!top" expanded="false" />
+            <element signature="n#points#0;n#Polygon#1;n#children#0;n#Pane#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="324" column="27" lean-forward="true" selection-start-line="324" selection-start-column="27" selection-end-line="324" selection-end-column="27" />
+          <folding>
+            <element signature="method#selectInstrument#0;class#Controller#0" expanded="false" />
+            <element signature="method#createInstrument#0;class#Controller#0" expanded="false" />
+            <element signature="method#canvasMouseDragged#0;class#Controller#0" expanded="false" />
+            <element signature="method#canvasMousePressed#0;class#Controller#0" expanded="false" />
+            <element signature="method#circleMouseClicked#0;class#Controller#0" expanded="false" />
+            <element signature="method#rectangleMouseClicked#0;class#Controller#0" expanded="false" />
+            <element signature="method#selectMouseClicked#0;class#Controller#0" expanded="false" />
+            <element signature="method#triangleMouseClicked#0;class#Controller#0" expanded="false" />
+            <element signature="method#polygonMouseclicked#0;class#Controller#0" expanded="false" />
+            <element signature="method#starMouseClicked#0;class#Controller#0" expanded="false" />
+            <element signature="method#rotateMouseClicked#0;class#Controller#0" expanded="false" />
+            <element signature="method#changeposMouseClicked#0;class#Controller#0" expanded="false" />
+            <element signature="method#findAngle#0;class#Controller#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/controll/Buffer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="91" column="16" lean-forward="false" selection-start-line="91" selection-start-column="16" selection-end-line="91" selection-end-column="16" />
+          <folding>
+            <element signature="method#setChangePoint1#0;class#Buffer#0" expanded="false" />
+            <element signature="method#setChangePoint2#0;class#Buffer#0" expanded="false" />
+            <element signature="method#changePositionFigure#0;class#Buffer#0" expanded="false" />
+            <element signature="method#paintShapes#0;class#Buffer#0" expanded="false" />
           </folding>
         </state>
       </provider>
